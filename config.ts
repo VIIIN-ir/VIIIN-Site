@@ -52,7 +52,7 @@ export const config = {
   // اطلاعات تماس و پشتیبانی
   support: {
     email: "support@viiin.chat",
-    matrixId: "#viiin:matrix.org"
+    matrixId: "#viiin:viiin.ir"
   },
   
   // متن شرایط استفاده
