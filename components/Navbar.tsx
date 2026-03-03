@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download, MessageCircle, FileText, Globe } from 'lucide-react';
-import { config } from '../config';
 
 interface NavbarProps {
   onOpenTerms: () => void;
@@ -39,9 +38,11 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenTerms }) => {
           className="text-2xl font-bold tracking-widest cursor-pointer flex items-center gap-2 group"
           onClick={() => scrollToSection('home')}
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-lg group-hover:shadow-purple-500/50 transition-all">
-             <span className="text-white font-bold text-sm">V</span>
-          </div>
+          <img
+            src="/viiin-mark.svg"
+            alt="لوگوی VIIIN"
+            className="w-9 h-9 rounded-lg object-contain bg-white/5 p-1 shadow-lg group-hover:shadow-purple-500/50 transition-all"
+          />
           <span className="text-white text-glow">VIIIN</span>
         </div>
 
