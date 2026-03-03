@@ -7,21 +7,21 @@ export const config = {
     {
       name: "Element Web",
       description: "کلاینت اصلی و پیشرفته ماتریکس با تمامی امکانات",
-      url: (import.meta as any).env?.VITE_WEB_CLIENT_ELEMENT || "https://app.element.io",
+      url: (import.meta as any).env?.VITE_WEB_CLIENT_ELEMENT || "https://chat-element.viiin.ir",
       color: "from-green-500 to-green-700",
       recommended: true
     },
     {
       name: "Cinny",
       description: "رابط کاربری مدرن، ساده و مشابه دیسکورد",
-      url: (import.meta as any).env?.VITE_WEB_CLIENT_CINNY || "https://app.cinny.in",
+      url: (import.meta as any).env?.VITE_WEB_CLIENT_CINNY || "https://chat-cinny.viiin.ir",
       color: "from-blue-500 to-blue-700",
       recommended: false
     },
     {
       name: "Hydrogen",
       description: "بسیار سبک و سریع، مناسب اینترنت ضعیف",
-      url: (import.meta as any).env?.VITE_WEB_CLIENT_HYDROGEN || "https://hydrogen.element.io",
+      url: (import.meta as any).env?.VITE_WEB_CLIENT_HYDROGEN || "https://chat-hydrogen.viiin.ir",
       color: "from-purple-500 to-purple-700",
       recommended: false
     }
