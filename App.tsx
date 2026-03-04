@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Background from './components/Background';
@@ -15,12 +14,11 @@ const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen w-full selection:bg-purple-500/30 selection:text-white">
-      {/* Animated Liquid Background */}
       <Background />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar onOpenTerms={() => setIsTermsOpen(true)} />
-        
+
         <main className="flex-grow container mx-auto px-4 py-8 space-y-24 sm:space-y-32">
           <section id="home" className="pt-20">
             <Hero />
@@ -46,7 +44,6 @@ const App: React.FC = () => {
         <Footer />
       </div>
 
-      {/* Terms of Service Modal */}
       <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
     </div>
   );
