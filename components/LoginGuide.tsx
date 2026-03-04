@@ -12,9 +12,9 @@ const LoginGuide: React.FC = () => {
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white">راهنمای کامل ورود به کلاینت</h2>
         <p className="text-slate-300 max-w-2xl mx-auto">
-          این صفحه از فایل محتوایی خوانده می‌شود. برای تغییر متن‌ها فقط فایل
+          این بخش برای آموزش وصل شدن به سرور وین میباشد
           <span className="text-white font-semibold"> content/loginGuideContent.ts</span>
-          {' '}را ویرایش کن.
+          {' '}
         </p>
       </div>
 
