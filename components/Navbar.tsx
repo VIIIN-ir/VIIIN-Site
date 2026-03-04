@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Download, MessageCircle, FileText, Globe } from 'lucide-react';
+import { Menu, X, Download, MessageCircle, FileText, Globe, BookOpen } from 'lucide-react';
 
 interface NavbarProps {
   onOpenTerms: () => void;
@@ -56,6 +56,10 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenTerms }) => {
             <Download size={16} />
             دانلود
           </button>
+          <button onClick={() => scrollToSection('login-guide')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-2">
+            <BookOpen size={16} />
+            آموزش ورود
+          </button>
           <button onClick={onOpenTerms} className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-2">
             <FileText size={16} />
             قوانین
@@ -87,6 +91,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenTerms }) => {
         <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-xl border-b border-white/10 p-4 flex flex-col gap-4 animate-in slide-in-from-top-2">
           <button onClick={() => scrollToSection('features')} className="text-slate-200 py-2 border-b border-white/5 text-right">امکانات سرور</button>
           <button onClick={() => scrollToSection('downloads')} className="text-slate-200 py-2 border-b border-white/5 text-right">دانلود کلاینت</button>
+          <button onClick={() => scrollToSection('login-guide')} className="text-slate-200 py-2 border-b border-white/5 text-right">آموزش ورود</button>
           <button onClick={() => { onOpenTerms(); setMobileMenuOpen(false); }} className="text-slate-200 py-2 border-b border-white/5 text-right">قوانین و شرایط</button>
           <button onClick={() => scrollToSection('support')} className="text-slate-200 py-2 text-right">پشتیبانی</button>
           <button onClick={() => scrollToSection('web-clients')} className="bg-purple-600 text-white py-3 rounded-xl text-center font-bold mt-2">
