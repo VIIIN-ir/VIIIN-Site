@@ -1,60 +1,140 @@
-import React from 'react';
-import { BookOpen, CheckCircle2 } from 'lucide-react';
-import { loginGuideSections } from '../content/loginGuideContent';
+export interface LoginGuideStep {
+  title: string;
+  description: string;
+  tips?: string[];
+}
 
-const LoginGuide: React.FC = () => {
-  return (
-    <div className="space-y-8">
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-200 text-sm">
-          <BookOpen size={16} />
-          آموزش ورود
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white">راهنمای کامل ورود به کلاینت</h2>
-        <p className="text-slate-300 max-w-2xl mx-auto">
-          این بخش برای آموزش وصل شدن به سرور وین میباشد
-          <span className="text-white font-semibold"> </span>
-          {' '}
-        </p>
-      </div>
+export interface LoginGuideSection {
+  id: string;
+  heading: string;
+  intro: string;
+  steps: LoginGuideStep[];
+}
 
-      <div className="grid gap-6">
-        {loginGuideSections.map((section) => (
-          <article key={section.id} className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 space-y-5">
-            <header>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">{section.heading}</h3>
-              <p className="text-slate-300 mt-2">{section.intro}</p>
-            </header>
-
-            <ol className="space-y-4">
-              {section.steps.map((step, index) => (
-                <li key={step.title} className="rounded-xl border border-white/10 bg-black/20 p-4">
-                  <div className="flex items-center gap-2 text-white font-semibold">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-purple-500/20 text-purple-200 text-sm">
-                      {index + 1}
-                    </span>
-                    {step.title}
-                  </div>
-                  <p className="text-slate-300 mt-2 leading-7">{step.description}</p>
-
-                  {step.tips && step.tips.length > 0 && (
-                    <ul className="mt-3 space-y-2">
-                      {step.tips.map((tip) => (
-                        <li key={tip} className="flex items-start gap-2 text-sm text-slate-200">
-                          <CheckCircle2 size={16} className="mt-0.5 text-emerald-300" />
-                          <span>{tip}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </article>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default LoginGuide;
+export const loginGuideSections: LoginGuideSection[] = [
+  {
+    id: 'download-client',
+    heading: '۱) نصب و آماده‌سازی کلاینت',
+    intro:
+      'برای اتصال به سرور ماتریکس viiin.ir به یک کلاینت سازگار با پروتکل Matrix نیاز دارید. کلاینت‌های متعددی برای پلتفرم‌های مختلف وجود دارند؛ یکی را انتخاب کنید و مراحل زیر را دنبال کنید.',
+    steps: [
+      {
+        title: 'انتخاب و دانلود کلاینت',
+        description:
+          'به سایت viiin.ir مراجعه کنید و از میان کلاینت‌های موجود (مانند Element، FluffyChat، SchildiChat، Nheko و …) نسخه‌ی مناسب سیستم‌عامل خود (ویندوز، مک، لینوکس، اندروید یا iOS) را دانلود کنید. برای اندروید می‌توانید از Google Play، F-Droid یا فایل APK مستقیم استفاده کنید و برای iOS از App Store.',
+        tips: [
+          'اگر به فروشگاه‌های رسمی دسترسی ندارید، نسخه‌ی APK یا دسکتاپ را مستقیماً از مخزن گیت‌هاب یا وب‌سایت رسمی آن کلاینت دریافت کنید.',
+          'مطمئن شوید نسخه‌ای که دانلود می‌کنید به‌روز و از منبع معتبر است.',
+        ],
+      },
+      {
+        title: 'نصب و اجرای اولیه',
+        description:
+          'فایل دانلود شده را اجرا کنید و مراحل نصب را طی کنید. در اندروید در صورت نیاز گزینه‌ی «نصب از منابع ناشناس» را فعال کنید. در ویندوز یا مک، اجازه‌های امنیتی لازم را تأیید کنید. پس از نصب، برنامه را باز کنید تا وارد صفحه‌ی خوش‌آمدگویی یا ورود شوید.',
+        tips: [
+          'در برخی سیستم‌عامل‌ها ممکن است هشدار امنیتی نمایش داده شود؛ اگر فایل را از منبع رسمی دریافت کرده‌اید با اطمینان ادامه دهید.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'set-homeserver',
+    heading: '۲) تنظیم آدرس سرور (Homeserver)',
+    intro:
+      'کلاینت‌های ماتریکس به‌صورت پیش‌فرض به سرور matrix.org متصل می‌شوند. برای استفاده از سرور viiin.ir باید آدرس Homeserver را به‌صورت دستی تغییر دهید.',
+    steps: [
+      {
+        title: 'یافتن بخش تنظیم سرور',
+        description:
+          'در صفحه‌ی ورود (Login) یا ثبت‌نام (Register)، به دنبال گزینه‌ای با عنوان «Homeserver» ،«Server» ،«Change Server» یا عبارت مشابه بگردید. معمولاً این گزینه در بالای فرم ورود یا زیر فیلد نام کاربری قرار دارد. در برخی کلاینت‌ها باید روی آدرس پیش‌فرض (matrix.org) کلیک یا ضربه بزنید تا قابل ویرایش شود.',
+        tips: [
+          'اگر گزینه‌ی تغییر سرور را نمی‌بینید، در تنظیمات پیشرفته (Advanced) یا بخش «Other» صفحه‌ی ورود جستجو کنید.',
+        ],
+      },
+      {
+        title: 'وارد کردن آدرس سرور',
+        description:
+          'آدرس سرور را دقیقاً به صورت viiin.ir یا https://viiin.ir وارد کنید و تأیید را بزنید. کلاینت باید چند لحظه صبر کند تا اطلاعات سرور را دریافت و اعتبارسنجی کند. پس از تأیید موفق، نام سرور در صفحه‌ی ورود نمایش داده خواهد شد.',
+        tips: [
+          'آدرس را بدون فاصله‌ی اضافی و بدون / انتهایی وارد کنید.',
+          'اگر خطای «Server not found» یا «Unable to connect» دیدید، اتصال اینترنت خود را بررسی کنید و مطمئن شوید فیلترشکن فعال در مسیر اتصال اختلال ایجاد نمی‌کند.',
+          'حتماً از https استفاده کنید نه http.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'login-or-register',
+    heading: '۳) ورود یا ثبت‌نام',
+    intro:
+      'پس از تنظیم صحیح آدرس سرور، می‌توانید با حساب موجود وارد شوید یا حساب جدیدی بسازید.',
+    steps: [
+      {
+        title: 'ورود با حساب موجود (Login)',
+        description:
+          'نام کاربری (یا شناسه‌ی کامل ماتریکسی به شکل user:viiin.ir@) و رمز عبور خود را وارد کنید و دکمه‌ی «Sign In» یا «Login» را بزنید. اگر ورود با SSO در سرور فعال باشد، دکمه‌ی «Sign in with SSO» یا «Single Sign-On» را خواهید دید که با کلیک روی آن به صفحه‌ی ورود مرورگر هدایت می‌شوید.',
+        tips: [
+          'شناسه‌ی ماتریکسی شما همیشه به شکل user:viiin.ir@ است؛ بخش user: را هنگام وارد کردن نام کاربری در برخی کلاینت‌ها نیازی نیست بنویسید.',
+          'اگر رمز عبورتان را فراموش کرده‌اید، با مدیر سرور تماس بگیرید.',
+        ],
+      },
+      {
+        title: 'ثبت‌نام حساب جدید (Register)',
+        description:
+          'اگر هنوز حساب کاربری ندارید و ثبت‌نام آزاد روی سرور فعال است، گزینه‌ی «Create Account» یا «Register» را انتخاب کنید. نام کاربری دلخواه و یک رمز عبور قوی وارد کنید. ممکن است مراحل تأیید اضافی مانند Captcha یا تأیید ایمیل نیز وجود داشته باشد.',
+        tips: [
+          'یک رمز عبور قوی شامل حروف بزرگ و کوچک، اعداد و نمادها انتخاب کنید.',
+          'اگر دکمه‌ی ثبت‌نام را نمی‌بینید، احتمالاً ثبت‌نام عمومی روی سرور غیرفعال شده و باید از مدیر سرور دعوت‌نامه دریافت کنید.',
+        ],
+      },
+      {
+        title: 'تأیید ورود و رمزنگاری',
+        description:
+          'پس از ورود موفق، کلاینت ممکن است از شما بخواهد یک «کلید بازیابی» (Recovery Key) ذخیره کنید یا «تأیید متقابل» (Cross-Signing Verification) انجام دهید. این مرحله برای دسترسی به تاریخچه‌ی پیام‌های رمزنگاری‌شده ضروری است. کلید بازیابی را در مکانی امن نگهداری کنید.',
+        tips: [
+          'بدون کلید بازیابی، در صورت خروج از حساب یا تعویض دستگاه، به پیام‌های رمزنگاری‌شده‌ی قبلی دسترسی نخواهید داشت.',
+          'اگر از دستگاه دیگری هم وارد هستید، می‌توانید جلسه‌ی جدید را با اسکن یک کد یا مقایسه‌ی ایموجی تأیید کنید.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'troubleshooting',
+    heading: '۴) رفع مشکلات رایج',
+    intro:
+      'اگر هنگام اتصال یا ورود با مشکلی مواجه شدید، راه‌حل‌های زیر را بررسی کنید.',
+    steps: [
+      {
+        title: 'خطای «Cannot reach homeserver» یا «Server not found»',
+        description:
+          'ابتدا مطمئن شوید آدرس سرور را به‌درستی و بدون غلط تایپی وارد کرده‌اید (viiin.ir). اتصال اینترنت را بررسی کنید. اگر از فیلترشکن یا VPN استفاده می‌کنید، یک‌بار آن را خاموش و دوباره تست کنید. در نهایت سعی کنید با یک مرورگر آدرس https://viiin.ir را باز کنید؛ اگر در مرورگر هم باز نشد، مشکل از شبکه یا سرور است.',
+        tips: [
+          'برخی VPNها ترافیک خاصی را مسدود می‌کنند؛ تغییر سرور VPN یا خاموش کردن موقت آن را امتحان کنید.',
+          'تاریخ و ساعت دستگاه خود را بررسی کنید؛ اختلاف زیاد باعث خطای گواهی SSL می‌شود.',
+        ],
+      },
+      {
+        title: 'خطای «Incorrect password» یا عدم پذیرش رمز عبور',
+        description:
+          'از صحیح بودن نام کاربری و رمز عبور اطمینان حاصل کنید. حروف بزرگ و کوچک در رمز عبور اهمیت دارند. وضعیت کلید Caps Lock را بررسی کنید. اگر مطمئنید اطلاعات صحیح است و همچنان خطا دریافت می‌کنید، با مدیر سرور برای بازنشانی رمز عبور تماس بگیرید.',
+      },
+      {
+        title: 'عدم نمایش پیام‌های قبلی پس از ورود',
+        description:
+          'برای مشاهده‌ی پیام‌های رمزنگاری‌شده باید کلید بازیابی (Recovery Key) یا تأیید متقابل از یک جلسه‌ی فعال دیگر را وارد کنید. بدون این کلید، پیام‌های قدیمی به‌صورت «Unable to decrypt» نمایش داده خواهند شد. به بخش تنظیمات امنیت (Security) در کلاینت خود بروید و کلید را وارد کنید.',
+        tips: [
+          'همیشه هنگام اولین ورود، کلید بازیابی را در یک مکان امن (مثلاً مدیر رمز عبور) ذخیره کنید.',
+        ],
+      },
+      {
+        title: 'کندی یا قطع و وصل شدن ارتباط',
+        description:
+          'کلاینت خود را به آخرین نسخه به‌روزرسانی کنید. اتصال Wi-Fi پایدار را به اینترنت موبایل ترجیح دهید. اگر مشکل ادامه داشت، کش (Cache) کلاینت را پاک کنید (معمولاً در تنظیمات پیشرفته قابل دسترسی است) و دوباره وارد شوید. در صورت تداوم مشکل، با مدیر سرور تماس بگیرید تا وضعیت سرور را بررسی کند.',
+        tips: [
+          'پاک کردن کش ممکن است باعث نیاز به ورود مجدد شود؛ مطمئن شوید کلید بازیابی در دسترس‌تان هست.',
+          'در ساعات پر ترافیک ممکن است سرعت کاهش یابد؛ چند دقیقه بعد دوباره امتحان کنید.',
+        ],
+      },
+    ],
+  },
+];
