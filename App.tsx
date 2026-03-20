@@ -9,7 +9,6 @@ import WebClients from './components/WebClients';
 import TermsModal from './components/TermsModal';
 import Support from './components/Support';
 import Footer from './components/Footer';
-import LoginGuide from './components/LoginGuide';
 
 const App: React.FC = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
@@ -35,9 +34,6 @@ const App: React.FC = () => {
             <Features />
           </section>
 
-          <section id="login-guide">
-            <LoginGuide />
-          </section>
 
           <section id="downloads">
             <Downloads />
