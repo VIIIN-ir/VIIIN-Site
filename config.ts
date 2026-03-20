@@ -30,18 +30,16 @@ export const config = {
   // لینک‌های دانلود اپلیکیشن‌ها
   downloads: {
     element: {
-      android: "https://play.google.com/store/apps/details?id=im.vector.app",
-      ios: "https://apps.apple.com/app/vector/id1083446067",
-      desktop: "https://element.io/download",
+      desktop: "https://download.viiin.ir/files/element/",
       version: "1.11.0"
     },
     schildichat: {
-      android: "https://play.google.com/store/apps/details?id=de.spiritcroc.riotx",
-      desktop: "https://schildi.chat/android/", // Generic link
+      android: "https://download.viiin.ir/files/schildichat/schildichat-android.apk",
+      desktop: "https://download.viiin.ir/files/schildichat/schildichat-windows.exe", // Generic link
       version: "1.0.0"
     },
     fluffychat: {
-      android: "https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat",
+      android: "https://download.viiin.ir/files/fluffychat/fluffychat-android.apk",
       ios: "https://apps.apple.com/app/fluffychat/id1551469600",
       version: "1.12.0"
     }
