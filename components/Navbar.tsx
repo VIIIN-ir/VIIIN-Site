@@ -1,6 +1,5 @@
-
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Download, MessageCircle, FileText, Globe } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Download, FileText, Globe, Menu, MessageCircle, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenTerms: () => void;
@@ -11,85 +10,65 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenTerms }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 ${
-        isScrolled ? 'bg-black/60 backdrop-blur-md py-4' : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
-        <div 
-          className="text-2xl font-bold tracking-widest cursor-pointer flex items-center gap-2 group"
-          onClick={() => scrollToSection('home')}
-        >
-          <img
-            src="/viiin-mark.svg"
-            alt="لوگوی VIIIN"
-            className="w-9 h-9 rounded-lg object-contain bg-white/5 p-1 shadow-lg group-hover:shadow-purple-500/50 transition-all"
-          />
-          <span className="text-white text-glow">VIIIN</span>
+    <nav className={`site-nav ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="container site-nav-inner">
+        <div className="logo-button" onClick={() => scrollToSection('home')}>
+          <img src="/viiin-mark.svg" alt="لوگوی VIIIN" className="logo-mark" />
+          <span className="text-glow">VIIIN</span>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <button onClick={() => scrollToSection('features')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-2">
+        <div className="nav-links">
+          <button onClick={() => scrollToSection('features')} className="nav-link">
             <Globe size={16} />
             امکانات
           </button>
-          <button onClick={() => scrollToSection('downloads')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-2">
+          <button onClick={() => scrollToSection('downloads')} className="nav-link">
             <Download size={16} />
             دانلود
           </button>
-          <button onClick={onOpenTerms} className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-2">
+          <button onClick={onOpenTerms} className="nav-link">
             <FileText size={16} />
             قوانین
           </button>
-          <button onClick={() => scrollToSection('support')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-2">
+          <button onClick={() => scrollToSection('support')} className="nav-link">
             <MessageCircle size={16} />
             پشتیبانی
           </button>
-          
-          <button 
-             onClick={() => scrollToSection('web-clients')}
-             className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm text-white px-5 py-2 rounded-full transition-all text-sm font-bold shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-          >
+          <button onClick={() => scrollToSection('web-clients')} className="nav-cta">
             ورود به نسخه وب
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
+        <button className="mobile-menu-toggle" onClick={() => setMobileMenuOpen((open) => !open)}>
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-xl border-b border-white/10 p-4 flex flex-col gap-4 animate-in slide-in-from-top-2">
-          <button onClick={() => scrollToSection('features')} className="text-slate-200 py-2 border-b border-white/5 text-right">امکانات سرور</button>
-          <button onClick={() => scrollToSection('downloads')} className="text-slate-200 py-2 border-b border-white/5 text-right">دانلود کلاینت</button>
-          <button onClick={() => { onOpenTerms(); setMobileMenuOpen(false); }} className="text-slate-200 py-2 border-b border-white/5 text-right">قوانین و شرایط</button>
-          <button onClick={() => scrollToSection('support')} className="text-slate-200 py-2 text-right">پشتیبانی</button>
-          <button onClick={() => scrollToSection('web-clients')} className="bg-purple-600 text-white py-3 rounded-xl text-center font-bold mt-2">
+        <div className="mobile-menu">
+          <button onClick={() => scrollToSection('features')}>امکانات سرور</button>
+          <button onClick={() => scrollToSection('downloads')}>دانلود کلاینت</button>
+          <button
+            onClick={() => {
+              onOpenTerms();
+              setMobileMenuOpen(false);
+            }}
+          >
+            قوانین و شرایط
+          </button>
+          <button onClick={() => scrollToSection('support')}>پشتیبانی</button>
+          <button className="primary" onClick={() => scrollToSection('web-clients')}>
             ورود به نسخه وب
           </button>
         </div>
