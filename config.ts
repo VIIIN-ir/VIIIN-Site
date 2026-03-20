@@ -41,7 +41,7 @@ export const config = {
     fluffychat: {
       android: "https://download.viiin.ir/files/fluffychat/fluffychat-android.apk",
       ios: "https://apps.apple.com/app/fluffychat/id1551469600",
-      desktop: "https://download.viiin.ir/files/fluffychat/fluffychat-linux-x64.tar.gz"
+      desktop: "https://download.viiin.ir/files/fluffychat/fluffychat-linux-x64.tar.gz",
       version: "1.12.0"
     }
   },
